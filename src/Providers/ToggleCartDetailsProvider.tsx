@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 interface ToggleCartContextProps {
   showCartInfo: boolean;
@@ -18,4 +19,15 @@ export default function ToggleCartDetailsProvider({
       {children}
     </ToggleCartDetailsContext.Provider>
   );
+}
+
+export function useToggleCartDetailsContext() {
+  const context = React.useContext(ToggleCartDetailsContext);
+  if (!context) {
+    throw Error(
+      "Toggle cart context should be available only inside ToggleCartDetailsProvider"
+    );
+  } else {
+    return context;
+  }
 }

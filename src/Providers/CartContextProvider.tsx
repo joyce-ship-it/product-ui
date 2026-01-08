@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 interface CartItemProps {
   id: number;
@@ -11,6 +12,7 @@ interface CartItemProps {
 interface CartContextProps {
   cartItems: CartItemProps[];
   setCartItems: React.Dispatch<React.SetStateAction<CartItemProps[]>>;
+  initialState: CartItemProps[];
 }
 
 const CartContext = React.createContext<CartContextProps | undefined>(
@@ -21,7 +23,7 @@ export default function CartContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [cartItems, setCartItems] = React.useState<CartItemProps[]>([
+  const initialState = [
     {
       id: 1,
       itemName: "Fall Limited Edition Sneakers",
@@ -29,8 +31,10 @@ export default function CartContextProvider({
       quantity: 0,
       totalAmount: 0,
     },
-  ]);
-  const value = { cartItems, setCartItems };
+  ];
+  const [cartItems, setCartItems] =
+    React.useState<CartItemProps[]>(initialState);
+  const value = { cartItems, setCartItems, initialState };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
