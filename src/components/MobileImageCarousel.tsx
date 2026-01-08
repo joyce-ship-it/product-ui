@@ -21,19 +21,22 @@ export default function MobileImageCarousel() {
     setCurrIndex(prevIndex);
   }
   return (
-    <section aria-label="featured products slideshow" className="relative">
+    <section
+      aria-label="featured products slideshow"
+      className="relative lg:hidden"
+    >
       <Image
         width={300}
         height={400}
         src={imgArr[currIndex]}
         alt="sneaker image"
-        className="w-full"
+        className="w-full md:w-auto mx-auto"
       ></Image>
-      <div className="absolute top-[50%] flex justify-between w-full px-2 -translate-y-[50%]">
+      <div className="absolute top-[50%] flex justify-between w-full px-2 -translate-y-[50%] ">
         <button
           onClick={moveToPreviousSlide}
           type="button"
-          className=" bg-white rounded-full w-10 h-10 grid place-items-center"
+          className=" bg-white rounded-full w-10 h-10 grid place-items-center border"
           aria-label="previous slide"
         >
           <ChevronLeft size={16} />
@@ -41,7 +44,7 @@ export default function MobileImageCarousel() {
         <button
           onClick={moveToNextSlide}
           type="button"
-          className=" bg-white rounded-full  w-10 h-10 grid place-items-center"
+          className=" bg-white rounded-full  w-10 h-10 grid place-items-center border"
           aria-label="next slide"
         >
           <ChevronRight size={16} />
